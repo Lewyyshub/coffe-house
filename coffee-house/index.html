@@ -12,6 +12,7 @@
         <div class="img-container">
           <img class="logo" src="assets/images/logo.png" alt="logo" />
         </div>
+
         <nav class="navbar">
           <ul class="nav">
             <li>Favorite coffee</li>
@@ -20,11 +21,27 @@
             <li>Contact us</li>
           </ul>
         </nav>
+
         <div class="menuBtn">
-          <button class="btn">Menu</button>
+          <a href="menu.html" class="menu-link">Menu</a>
           <img class="cup" src="assets/images/cup.png" alt="cup" />
+          <button class="burger" aria-label="menu">
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </header>
+
+      <div class="mobile-menu">
+        <ul>
+          <li>Favorite coffee</li>
+          <li>About</li>
+          <li>Mobile app</li>
+          <li>Contact us</li>
+          <li><a href="menu.html">Menu</a></li>
+        </ul>
+      </div>
+
       <main>
         <div class="content">
           <img
@@ -133,8 +150,22 @@
               ordering your <br />favorite coffee from wherever you are</span
             >
             <div class="store">
-              <div></div>
-              <div></div>
+              <div class="apple">
+                <div><img src="assets/images/apple.png" alt="apple" /></div>
+                <div>
+                  <p>Avilable on the</p>
+                  <span>App Store</span>
+                </div>
+              </div>
+              <div class="playstore">
+                <div>
+                  <img src="assets/images/appstore.png" alt="appstore" />
+                </div>
+                <div>
+                  <p>Avilable on the</p>
+                  <span>App Store</span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="phones">
@@ -145,7 +176,9 @@
       <footer>
         <div class="footer-div">
           <div class="left-div">
-            <h1>Sip, Savor, Smile. <span>It’s coffee time!</span></h1>
+            <div class="textdiv">
+              <h1>Sip, Savor, Smile. <br /><span>It’s coffee time!</span></h1>
+            </div>
             <div class="socials-div">
               <div>
                 <img src="assets/images/twitter.png" alt="X" />

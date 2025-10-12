@@ -8,10 +8,11 @@
   </head>
   <body>
     <div class="container">
-      <header>
+   <header>
         <div class="img-container">
           <img class="logo" src="assets/images/logo.png" alt="logo" />
         </div>
+
         <nav class="navbar">
           <ul class="nav">
             <li>Favorite coffee</li>
@@ -20,16 +21,32 @@
             <li>Contact us</li>
           </ul>
         </nav>
+
         <div class="menuBtn">
-          <button class="btn">Menu</button>
+          <a href="index.html" class="menu-link">Home</a>
           <img class="cup" src="assets/images/cup.png" alt="cup" />
+          <button class="burger" aria-label="menu">
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </header>
+
+      <div class="mobile-menu">
+        <ul>
+          <li>Favorite coffee</li>
+          <li>About</li>
+          <li>Mobile app</li>
+          <li>Contact us</li>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </div>
+      
       <main>
         <div class="content">
           <div class="header-div">
             <h1>
-              Behind each of our cups hides an <span> amazing surprise</span>
+              Behind each of our cups <br>hides an <span> amazing surprise</span>
             </h1>
           </div>
             <div class="products-div">
@@ -54,6 +71,54 @@
             </div>         
           </div>
         </div>
+       
+ <!-- PRODUCT MODAL -->
+<div id="product-modal" class="modal">
+  <div class="modal-box">
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modal-img" src="" alt="">
+      </div>
+      <div class="modal-info">
+        <h2 id="modal-name"></h2>
+        <p id="modal-desc"></p>
+
+        <div class="modal-section sizes">
+          <p>Size</p>
+          <div>
+            <button class="active">S 200 ml</button>
+          <button>M 300 ml</button>
+          <button>L 400 ml</button>
+          </div>
+        </div>
+
+        <div class="modal-section additives">
+          <p>Additives</p>
+          <div>
+            <button>1 Sugar</button>
+          <button>2 Cinnamon</button>
+          <button>3 Syrup</button>
+          </div>
+        </div>
+
+        <div class="modal-total">
+          <span>Total:</span>
+          <span id="modal-price">$0.00</span>
+        </div>
+
+       <div class="mark">
+        <img src="assets/images/mark.png" alt="mark">
+         <span class="modal-note">
+          The cost is not final. Download our mobile app to see the final price and place your order.
+          Earn loyalty points and enjoy your favorite coffee with up to 20% discount.
+        </span>
+       </div>
+        <button class="close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
       </main>
      <footer>
         <div class="footer-div">
