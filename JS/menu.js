@@ -22,7 +22,7 @@ window.addEventListener("click", (e) => {
   if (e.target === modal) modal.style.display = "none";
 });
 
-fetch("../products.json")
+fetch("products.json")
   .then((res) => res.json())
   .then((data) => {
     const container = document.getElementById("products-container");
