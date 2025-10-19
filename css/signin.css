@@ -2,8 +2,13 @@
   box-sizing: border-box;
   margin: 0;
 }
+@font-face {
+  font-family: inter;
+  src: url(/assets/font/Inter_18pt-Regular.ttf);
+}
 body {
   background-color: #e1d4c9;
+  font-family: inter;
 }
 main {
   display: flex;
@@ -23,6 +28,9 @@ main {
 }
 h1 {
   font-size: 60px;
+  color: #403f3d;
+  font-weight: 600;
+  line-height: 125%;
 }
 .form-group {
   display: flex;
@@ -36,9 +44,16 @@ h1 {
   padding: 12px 12px;
   border: 1px solid #c1b6ad;
   background: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
 }
+
 .form-group > label {
   font-size: 16px;
+  line-height: 150%;
+  font-weight: 400;
+  color: #403f3d;
 }
 .signinbtn {
   width: 200px;
@@ -48,11 +63,16 @@ h1 {
   border: 1px solid #665f55;
   border-radius: 100px;
   height: 44px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
 }
 .signinbtn > button {
-  font-size: 16px;
   border: none;
   background: none;
   color: #403f3d;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
 }
