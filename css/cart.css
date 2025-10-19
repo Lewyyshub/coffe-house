@@ -53,8 +53,20 @@ main {
   font-size: 16px;
 }
 .name-description > p {
-  font-style: bold;
   font-size: 24px;
+  font-weight: 600;
+  line-height: 125%;
+}
+.name-description > span {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+.right-side > p {
+  color: #403f3d;
+  font-size: 24px;
+  line-height: 125%;
+  font-weight: 600;
 }
 .trash-div {
   width: 24px;
@@ -67,7 +79,8 @@ main {
 .cart-div > h1 {
   font-size: 60px;
   font-weight: 600;
-  font-style: semi bold;
+  line-height: 125%;
+  color: #403f3d;
 }
 .right-side {
   font-size: 24px;
@@ -87,9 +100,14 @@ main {
 }
 .total-div > p {
   font-size: 24px;
+  color: #403f3d;
+  font-weight: 600;
+  line-height: 125%;
 }
 .total-div > span {
   font-size: 24px;
+  line-height: 125%;
+  font-weight: 600;
 }
 .login-register {
   display: flex;
@@ -111,4 +129,7 @@ main {
 .login-register > div > a {
   color: #403f3d;
   text-decoration: none;
+  font-weight: 600;
+  line-height: 150%;
+  font-size: 16px;
 }
