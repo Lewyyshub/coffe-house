@@ -124,11 +124,17 @@ header {
   font-size: 16px;
   line-height: 150%;
 }
+#reg-city::placeholder {
+  color: #a1a8b3;
+}
 #reg-street {
   padding-left: 12px;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+}
+#reg-street::placeholder {
+  color: #a1a8b3;
 }
 #reg-house {
   padding-left: 12px;
@@ -136,20 +142,32 @@ header {
   font-size: 16px;
   line-height: 150%;
 }
+#reg-house::placeholder {
+  color: #a1a8b3;
+}
 #reg-login {
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+}
+#reg-login::placeholder {
+  color: #a1a8b3;
 }
 #reg-password {
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
 }
+#reg-password::placeholder {
+  color: #a1a8b3;
+}
 #reg-confirm-password {
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
+}
+#reg-confirm-password::placeholder {
+  color: #a1a8b3;
 }
 .payments > label > input {
   font-size: 16px;
@@ -176,7 +194,7 @@ header {
 .custom-radio {
   width: 18px;
   height: 18px;
-  border: 2px solid #4b4037;
+  border: 1px solid #4b4037;
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -200,4 +218,7 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.registrationn {
+  margin-right: 180px;
 }
