@@ -709,3 +709,15 @@ li {
   padding: 50px;
   font-size: 1.2rem;
 }
+.login-register-div > a {
+  text-decoration: none;
+  color: #403f3d;
+  font-weight: 600;
+  line-height: 150%;
+  font-size: 20px;
+  font-family: Inter;
+}
+.login-register-div {
+  display: flex;
+  gap: 18px;
+}
