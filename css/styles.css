@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  background-color: #e1d4c9;
+}
+.invalid {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+.register-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 400px;
+  width: 100%;
+  height: 70vh;
+}
+.login-pass-conpas {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.second-side {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: start;
+  padding: 40px;
+  gap: 24px;
+  /* justify-content: space-around; */
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+.form-group > input {
+  width: 560px;
+  height: 56px;
+  border-radius: 12px;
+  gap: 8px;
+  padding: 12px 12px;
+  border: 1px solid #c1b6ad;
+  background: none;
+}
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-group2 > input {
+  width: 365px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1px solid #c1b6ad;
+  background: none;
+}
+.form-group2 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.form-group3 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-group3 > div {
+  display: flex;
+  gap: 24px;
+}
+.registerbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #665f55;
+  padding: 10px 78px 10px 78px;
+  border-radius: 100px;
+  width: 200px;
+  height: 44px;
+}
+#register-btn {
+  border: none;
+  background: none;
+  color: #403f3d;
+  cursor: pointer;
+}
+.registrationn {
+  font-size: 60px;
+}
+header {
+  padding: 32px;
+}

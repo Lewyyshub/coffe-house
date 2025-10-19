@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="register-div">
+      <h1 class="registrationn">Registration</h1>
+      <main>
+        <div class="main-content">
+          <div class="login-pass-conpas">
+            <div class="form-group">
+              <label for="reg-login">Login</label>
+              <input type="text" id="reg-login" placeholder="Placeholder" />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-password">Password</label>
+              <input
+                type="password"
+                id="reg-password"
+                placeholder="Placeholder"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-confirm-password">Confirm Password</label>
+              <input
+                type="password"
+                id="reg-confirm-password"
+                placeholder="Placeholder"
+              />
+            </div>
+          </div>
+          <div class="second-side">
+            <div class="form-group2">
+              <label for="reg-city">City</label>
+              <input type="text" id="reg-city" placeholder="Placeholder" />
+            </div>
+
+            <div class="form-group2">
+              <label for="reg-street">Street</label>
+              <input type="text" id="reg-street" placeholder="Placeholder" />
+            </div>
+
+            <div class="form-group2">
+              <label for="reg-house">House Number</label>
+              <input type="number" id="reg-house" placeholder="Placeholder" />
+            </div>
+
+            <div class="form-group3">
+              <label>Pay by</label>
+              <div class="payments">
+                <label
+                  ><input type="radio" name="payment" id="reg-cash" />
+                  Cash</label
+                >
+                <label
+                  ><input type="radio" name="payment" id="reg-card" />
+                  Card</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="register-error" class="error-message"></div>
+        <div class="registerbutton">
+          <button id="register-btn" disabled>Registration</button>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/JS/registration.js"></script>
+  </body>
+</html>

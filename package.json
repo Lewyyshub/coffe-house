@@ -1,0 +1,30 @@
+{
+  "name": "coffe-house",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server --open=./index.html",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lewyyshub/coffe-house.git"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lewyyshub/coffe-house/issues"
+  },
+  "homepage": "https://github.com/Lewyyshub/coffe-house#readme",
+  "description": "",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.46.1",
+    "@typescript-eslint/parser": "^8.46.1",
+    "eslint": "^9.38.0",
+    "live-server": "^1.2.2",
+    "typescript": "^5.9.3"
+  }
+}

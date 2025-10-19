@@ -472,7 +472,7 @@ li {
 @media (max-width: 1024px) {
   .download-page {
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     text-align: left;
     gap: 40px;
   }
@@ -536,8 +536,8 @@ li {
   background-color: #665f55;
   border-radius: 40px;
   gap: 30px;
-  flex-direction: row; 
-  align-items: flex-start; 
+  flex-direction: row;
+  align-items: flex-start;
   text-align: left;
 }
 
@@ -610,11 +610,10 @@ li {
   height: 24px;
 }
 
-
 @media (max-width: 1024px) {
   .footer-div {
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     text-align: left;
     padding: 60px 40px;
     gap: 60px;
@@ -696,4 +695,17 @@ li {
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.loader {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
 }
