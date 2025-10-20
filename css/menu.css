@@ -166,14 +166,14 @@ header {
 /* MOBILE */
 @media (max-width: 768px) {
   .navbar {
-    display: none; 
+    display: none;
   }
 }
 
 /* SMALL MOBILE */
 @media (max-width: 480px) {
   .nav li {
-    font-size: 14px; 
+    font-size: 14px;
   }
 }
 
@@ -294,8 +294,9 @@ header {
   background-color: #665f55;
   border-radius: 40px;
   gap: 30px;
-  flex-direction: row; 
-  align-items: flex-start;   text-align: left;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .left-div,
@@ -371,7 +372,7 @@ header {
 @media (max-width: 1024px) {
   .footer-div {
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     text-align: left;
     padding: 60px 40px;
     gap: 60px;
@@ -444,11 +445,13 @@ header {
 }
 
 .modal {
-  display: none;
+  display: none; /* თავიდან დამალული */
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -582,7 +585,9 @@ header {
   color: #403f3d;
   cursor: pointer;
 }
-
+.modal.open {
+  display: flex; /* გახსნისას ჩანს */
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
