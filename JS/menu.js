@@ -1,103 +1,3 @@
-// const productsContainer = document.getElementById("products-container");
-// const filterDivs = document.querySelectorAll(".filter div");
-// const modal = document.getElementById("product-modal");
-// const modalName = modal.querySelector("#modal-name");
-// const modalDesc = modal.querySelector("#modal-desc");
-// const modalPrice = modal.querySelector("#modal-price");
-// const modalCloseBtn = modal.querySelector(".close-btn");
-// const modalSizesDiv = modal.querySelector(".sizes > div");
-// const modalExtrasDiv = modal.querySelector(".additives > div");
-
-// let allProducts = [];
-// let currentCategory = "Coffee";
-
-// // Loader
-// const loader = document.createElement("div");
-// loader.className = "loader";
-// loader.textContent = "Loading...";
-// productsContainer.appendChild(loader);
-
-// // Create product card
-// function createProductCard(product) {
-//   const card = document.createElement("div");
-//   card.className = "product-card";
-//   card.innerHTML = `
-//     <h3>${product.name}</h3>
-//     <p>${product.description}</p>
-//     <p class="price">$${Number(product.price).toFixed(2)}</p>
-//   `;
-//   // Modal open
-//   card.addEventListener("click", () => openModal(product));
-//   return card;
-// }
-
-// // Render products
-// function renderProducts(products) {
-//   productsContainer.innerHTML = "";
-//   if (!products.length) {
-//     productsContainer.innerHTML = "<p>No products found in this category.</p>";
-//     return;
-//   }
-//   products.forEach((p) => productsContainer.appendChild(createProductCard(p)));
-// }
-
-// // Filter
-// filterDivs.forEach((div) => {
-//   div.addEventListener("click", () => {
-//     filterDivs.forEach((d) => d.classList.remove("active"));
-//     div.classList.add("active");
-//     currentCategory = div.textContent.trim();
-//     filterAndRender();
-//   });
-// });
-
-// function filterAndRender() {
-//   const filteredProducts = allProducts.filter(
-//     (p) => p.category.toLowerCase() === currentCategory.toLowerCase()
-//   );
-//   renderProducts(filteredProducts);
-// }
-
-// // Fetch products from API
-// async function fetchProducts() {
-//   productsContainer.innerHTML = "";
-//   productsContainer.appendChild(loader);
-
-//   try {
-//     const res = await fetch(
-//       "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/products"
-//     );
-//     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-//     const result = await res.json();
-//     allProducts = Array.isArray(result.data) ? result.data : [];
-//     filterAndRender();
-//   } catch (err) {
-//     productsContainer.innerHTML =
-//       "<div class='error'>Something went wrong. Please refresh the page.</div>";
-//     console.error(err);
-//   }
-// }
-
-// // Modal logic
-// function openModal(product) {
-//   console.log("Modal should open for:", product.name);
-//   modalName.textContent = product.name;
-//   modalDesc.textContent = product.description;
-
-//   modalPrice.textContent = `$${Number(product.price).toFixed(2)}`;
-//   modal.classList.add("open");
-// }
-// // Close modal
-// modalCloseBtn.addEventListener("click", () => modal.classList.remove("open"));
-// window.addEventListener("keydown", (e) => {
-//   if (e.key === "Escape") modal.classList.remove("open");
-// });
-// modal.addEventListener("click", (e) => {
-//   if (e.target === modal) modal.classList.remove("open");
-// });
-
-// // Initialize
-// document.addEventListener("DOMContentLoaded", fetchProducts);
 const productsContainer = document.getElementById("products-container");
 const filterDivs = document.querySelectorAll(".filter div");
 const modal = document.getElementById("product-modal");
@@ -205,7 +105,7 @@ async function openModal(product) {
       Object.entries(fullProduct.sizes).forEach(([key, size], index) => {
         const btn = document.createElement("button");
         const price = size.discountPrice || size.price;
-        btn.textContent = `${size.size} - $${price}`;
+        btn.textContent = ` ${size.size} `;
         btn.dataset.price = price;
         if (index === 0) btn.classList.add("active");
         modalSizesDiv.appendChild(btn);
@@ -218,7 +118,7 @@ async function openModal(product) {
     if (fullProduct.additives && fullProduct.additives.length > 0) {
       fullProduct.additives.forEach((extra) => {
         const btn = document.createElement("button");
-        btn.textContent = `${extra.name} (+$${extra.price})`;
+        btn.textContent = `${extra.name} `;
         btn.dataset.price = extra.price;
         modalExtrasDiv.appendChild(btn);
       });

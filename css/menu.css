@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Inter";
-  src: url("../assets/font/Inter_18pt-Regular.ttf") format("truetype");
+  font-family: inter;
+  src: url(/assets/font/Inter_18pt-Regular.ttf);
 }
 * {
   box-sizing: border-box;
@@ -512,6 +512,10 @@ header {
   gap: 10px;
   margin-top: 10px;
   flex-wrap: wrap;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #403f3d;
 }
 
 .sizes button,
@@ -523,12 +527,16 @@ header {
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s ease;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 600;
+  color: #403f3d;
 }
 
 .sizes button.active,
 .additives button.active {
   background: #665f55;
-  color: #fff;
+  color: #e1d4c9;
 }
 
 .modal-total {
@@ -570,11 +578,15 @@ header {
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: #403f3d;
 }
 
 .close-btn:hover {
-  background: #403f3d;
-  color: #fff;
+  background: #665F55;
+  color: #e1d4c9;
 }
 
 .close-modal {
