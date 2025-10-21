@@ -1,64 +1,169 @@
+// const loginInput = document.getElementById("login");
+// const passwordInput = document.getElementById("password");
+// const signInBtn = document.getElementById("signin-btn");
+// const errorDiv = document.getElementById("signin-error");
+
+// // ===== Validation Rules =====
+// function validateLogin(value) {
+//   return /^[A-Za-z][A-Za-z0-9]{2,}$/.test(value);
+// }
+// function validatePassword(value) {
+//   return /^(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/.test(value);
+// }
+
+// // ===== Utility =====
+// function showInputError(input, message) {
+//   input.classList.add("invalid");
+//   errorDiv.textContent = message;
+// }
+// function clearInputError(input) {
+//   input.classList.remove("invalid");
+//   errorDiv.textContent = "";
+// }
+// function checkFormValidity() {
+//   const valid =
+//     validateLogin(loginInput.value) && validatePassword(passwordInput.value);
+//   signInBtn.disabled = !valid;
+// }
+
+// // ===== Event Listeners =====
+// loginInput.addEventListener("blur", () => {
+//   if (!validateLogin(loginInput.value)) {
+//     showInputError(
+//       loginInput,
+//       "Login must be at least 3 characters and start with a letter"
+//     );
+//   } else {
+//     clearInputError(loginInput);
+//   }
+//   checkFormValidity();
+// });
+
+// passwordInput.addEventListener("blur", () => {
+//   if (!validatePassword(passwordInput.value)) {
+//     showInputError(
+//       passwordInput,
+//       "Password must be at least 6 characters and contain 1 special character"
+//     );
+//   } else {
+//     clearInputError(passwordInput);
+//   }
+//   checkFormValidity();
+// });
+
+// [loginInput, passwordInput].forEach((input) =>
+//   input.addEventListener("focus", () => {
+//     clearInputError(input);
+//   })
+// );
+
+// // ===== Authentication =====
+// signInBtn.addEventListener("click", async () => {
+//   try {
+//     const res = await fetch(
+//       "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/auth/login",
+//       {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//           login: loginInput.value,
+//           password: passwordInput.value,
+//         }),
+//       }
+//     );
+
+//     if (!res.ok) throw new Error("Incorrect login or password");
+
+//     const data = await res.json();
+//     localStorage.setItem("user", JSON.stringify(data));
+//     window.location.href = "menu.html";
+//   } catch (err) {
+//     errorDiv.textContent = "Incorrect login or password";
+//   }
+// });
 const loginInput = document.getElementById("login");
 const passwordInput = document.getElementById("password");
 const signInBtn = document.getElementById("signin-btn");
 const errorDiv = document.getElementById("signin-error");
-// Validation functions
+
+// ===== Validation Rules =====
 function validateLogin(value) {
-    return /^[A-Za-z][A-Za-z]{2,}$/.test(value); // min 3 chars, start with letter, only letters
+  return /^[A-Za-z]{3,}$/.test(value); // მინ. 3 სიმბოლო, მხოლოდ ასოები
 }
+
 function validatePassword(value) {
-    return /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/.test(value); // min 6 chars, 1 special
+  return /^(?=.{6,})(?=.*[!@#$%^&*(),.?":{}|<>]).*$/.test(value); // მინ. 6 სიმბოლო, 1 სპეციალური
 }
+
+// ===== Utility =====
+function showInputError(input, message) {
+  input.classList.add("invalid");
+  errorDiv.textContent = message;
+}
+
+function clearInputError(input) {
+  input.classList.remove("invalid");
+  errorDiv.textContent = "";
+}
+
 function checkFormValidity() {
-    signInBtn.disabled = !(validateLogin(loginInput.value) && validatePassword(passwordInput.value));
+  const valid =
+    validateLogin(loginInput.value) && validatePassword(passwordInput.value);
+  signInBtn.disabled = !valid;
 }
-// Event listeners
+
+// ===== Event Listeners =====
 loginInput.addEventListener("blur", () => {
-    if (!validateLogin(loginInput.value)) {
-        loginInput.classList.add("invalid");
-        errorDiv.textContent =
-            "Login must be at least 3 characters and start with a letter";
-    }
+  if (!validateLogin(loginInput.value)) {
+    showInputError(
+      loginInput,
+      "Login must be at least 3 English letters and start with a letter"
+    );
+  } else {
+    clearInputError(loginInput);
+  }
+  checkFormValidity();
 });
-loginInput.addEventListener("focus", () => {
-    loginInput.classList.remove("invalid");
-    errorDiv.textContent = "";
-    checkFormValidity();
-});
+
 passwordInput.addEventListener("blur", () => {
-    if (!validatePassword(passwordInput.value)) {
-        passwordInput.classList.add("invalid");
-        errorDiv.textContent =
-            "Password must be at least 6 characters and contain 1 special character";
-    }
+  if (!validatePassword(passwordInput.value)) {
+    showInputError(
+      passwordInput,
+      "Password must be at least 6 characters and contain 1 special character"
+    );
+  } else {
+    clearInputError(passwordInput);
+  }
+  checkFormValidity();
 });
-passwordInput.addEventListener("focus", () => {
-    passwordInput.classList.remove("invalid");
-    errorDiv.textContent = "";
-    checkFormValidity();
-});
-// Sign In button click
+
+[loginInput, passwordInput].forEach((input) =>
+  input.addEventListener("focus", () => {
+    clearInputError(input);
+  })
+);
+
+// ===== Authentication =====
 signInBtn.addEventListener("click", async () => {
-    try {
-        const res = await fetch("http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                login: loginInput.value,
-                password: passwordInput.value,
-            }),
-        });
-        if (!res.ok)
-            throw new Error("Incorrect login or password");
-        const data = await res.json();
-        // Save token / user info if needed
-        localStorage.setItem("user", JSON.stringify(data));
-        // Redirect to Menu
-        window.location.href = "menu.html";
-    }
-    catch (err) {
-        errorDiv.textContent = "Incorrect login or password";
-    }
+  try {
+    const res = await fetch(
+      "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/auth/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          login: loginInput.value,
+          password: passwordInput.value,
+        }),
+      }
+    );
+
+    if (!res.ok) throw new Error("Incorrect login or password");
+
+    const data = await res.json();
+    localStorage.setItem("user", JSON.stringify(data));
+    window.location.href = "menu.html";
+  } catch (err) {
+    errorDiv.textContent = "Incorrect login or password";
+  }
 });
-export {};
-//# sourceMappingURL=signin.js.map

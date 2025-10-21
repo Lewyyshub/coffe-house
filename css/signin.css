@@ -82,3 +82,43 @@ h1 {
 #password::placeholder {
   color: #a1a8b3;
 }
+.invalid {
+  border: 2px solid red !important;
+  background-image: url("/assets/error-icon.png");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 18px;
+}
+.error-message {
+  color: red;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input.invalid {
+  border: 2px solid red;
+}
+
+.error-icon {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: red;
+  font-size: 1.2em;
+}
+
+.input-wrapper input.invalid + .error-icon {
+  display: inline;
+}
+
+#errorDiv {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 2px;
+}
