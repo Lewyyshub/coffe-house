@@ -172,6 +172,10 @@ header {
   -moz-appearance: none;
   appearance: none;
 }
+#register-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 #reg-street {
   padding-left: 12px;
@@ -279,4 +283,18 @@ header {
 }
 .registrationn {
   margin-right: 180px;
+}
+input.invalid {
+  border: 1.5px solid red;
+}
+
+.input-error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

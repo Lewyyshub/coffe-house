@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   // ===== Elements =====
   const login = document.getElementById("reg-login");
@@ -14,57 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== City & Street Data =====
   const streetsByCity = {
-    Tbilisi: [
-      "Rustaveli Ave",
-      "Chavchavadze Ave",
-      "Agmashenebeli Ave",
-      "Vake Park St",
-      "Saburtalo St",
-      "Didube St",
-      "Gldani St",
-      "Vazha-Pshavela St",
-      "Vera St",
-      "Avlabari St",
-    ],
-    Batumi: [
-      "Rustaveli St",
-      "Chavchavadze St",
-      "Khimshiashvili St",
-      "Gorgiladze St",
-      "Pirosmani St",
-      "Tbel Abuseridze St",
-      "Zubalashvili St",
-      "Pushkin St",
-      "Melikishvili St",
-      "Tamar Mepe St",
-    ],
-    Kutaisi: [
-      "Tsereteli St",
-      "Chavchavadze St",
-      "Gelati St",
-      "Rustaveli St",
-      "David Agmashenebeli St",
-      "Tamar Mepe St",
-      "Nikea St",
-      "Paliashvili St",
-      "Poti St",
-      "Khachapuridze St",
-    ],
+    Tbilisi: ["Rustaveli Ave", "Chavchavadze Ave", "Agmashenebeli Ave"],
+    Batumi: ["Rustaveli St", "Chavchavadze St", "Khimshiashvili St"],
+    Kutaisi: ["Tsereteli St", "Chavchavadze St", "Gelati St"],
   };
 
   // ===== Validation =====
   function validateLogin(value) {
-    return /^[A-Za-z]{3,}$/.test(value);
+    return /^[A-Za-z][A-Za-z0-9]{2,}$/.test(value);
   }
-
   function validatePassword(value) {
     return /^(?=.{6,})(?=.*[!@#$%^&*(),.?":{}|<>]).*$/.test(value);
   }
-
   function validateConfirmPassword() {
     return confirmPassword.value && password.value === confirmPassword.value;
   }
-
   function validateCity() {
     return city.value !== "";
   }
@@ -78,17 +41,34 @@ document.addEventListener("DOMContentLoaded", () => {
     return paymentCash.checked || paymentCard.checked;
   }
 
-  // ===== Utility =====
-  function showErrorMessage(input, message) {
+  // ===== Utility (Validation visuals) =====
+  function showInputError(input, message) {
     input.classList.add("invalid");
-    errorDiv.textContent = message;
+    input.style.border = "1.5px solid red";
+    input.style.backgroundImage = "url('/assets/error-icon.svg')";
+    input.style.backgroundRepeat = "no-repeat";
+    input.style.backgroundPosition = "right 10px center";
+
+    // individual error message under input
+    let msg = input.parentElement.querySelector(".input-error");
+    if (!msg) {
+      msg = document.createElement("div");
+      msg.className = "input-error";
+      input.parentElement.appendChild(msg);
+    }
+    msg.textContent = message;
   }
 
-  function clearError(input) {
+  function clearInputError(input) {
     input.classList.remove("invalid");
-    errorDiv.textContent = "";
+    input.style.border = "";
+    input.style.backgroundImage = "none";
+
+    const msg = input.parentElement.querySelector(".input-error");
+    if (msg) msg.remove();
   }
 
+  // ===== Check overall form validity =====
   function checkFormValidity() {
     const isValid =
       validateLogin(login.value) &&
@@ -100,6 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
       validatePayment();
 
     registerBtn.disabled = !isValid;
+    registerBtn.style.opacity = isValid ? "1" : "0.5";
+    registerBtn.style.cursor = isValid ? "pointer" : "not-allowed";
   }
 
   // ===== Update Street Options =====
@@ -121,39 +103,44 @@ document.addEventListener("DOMContentLoaded", () => {
   [login, password, confirmPassword, house].forEach((input) => {
     input.addEventListener("blur", () => {
       if (input === login && !validateLogin(login.value))
-        showErrorMessage(login, "Login must be at least 3 English letters");
+        showInputError(login, "Login must be at least 3 English letters");
       else if (input === password && !validatePassword(password.value))
-        showErrorMessage(
+        showInputError(
           password,
           "Password must be at least 6 characters and contain 1 special character"
         );
       else if (input === confirmPassword && !validateConfirmPassword())
-        showErrorMessage(confirmPassword, "Passwords do not match");
+        showInputError(confirmPassword, "Passwords do not match");
       else if (input === house && !validateHouse(house.value))
-        showErrorMessage(house, "House number must be greater than 1");
-      else clearError(input);
+        showInputError(house, "House number must be greater than 1");
+      else clearInputError(input);
 
       checkFormValidity();
     });
-    input.addEventListener("focus", () => clearError(input));
+
+    input.addEventListener("focus", () => clearInputError(input));
+    input.addEventListener("input", checkFormValidity);
   });
 
   city.addEventListener("change", () => {
     updateStreetOptions();
-    clearError(city);
+    clearInputError(city);
   });
 
   street.addEventListener("change", () => {
-    clearError(street);
+    clearInputError(street);
     checkFormValidity();
   });
 
   [paymentCash, paymentCard].forEach((input) => {
     input.addEventListener("change", () => {
-      clearError(input);
+      clearInputError(input);
       checkFormValidity();
     });
   });
+
+  // ===== Initial state =====
+  checkFormValidity();
 
   // ===== Registration =====
   registerBtn.addEventListener("click", async () => {
@@ -167,6 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
       paymentMethod: paymentCash.checked ? "cash" : "card",
     };
 
+    // სწორად შენახვა localStorage-ში
+    localStorage.setItem("user", JSON.stringify(payload));
+
     try {
       const res = await fetch(
         "http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/auth/register",
@@ -179,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Registration failed");
+
       window.location.href = "signin.html";
     } catch (err) {
       errorDiv.textContent = err.message;

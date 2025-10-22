@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <header>
+      <!-- <header>
         <div class="img-container">
           <img class="logo" src="assets/images/logo.png" alt="logo" />
         </div>
@@ -20,7 +20,6 @@
             <li>Contact us</li>
           </ul>
         </nav>
-
         <div class="cart-div">
           <a href="cart.html"
             ><img src="assets/images/cart.png" alt="cart"
@@ -38,7 +37,7 @@
             <span></span>
           </button>
         </div>
-      </header>
+      </header> -->
 
       <div class="mobile-menu">
         <ul>
@@ -214,5 +213,33 @@
       </footer>
     </div>
   </body>
+  <script type="module" src="/JS/index.js">
+      document.addEventListener("DOMContentLoaded", function () {
+      const cartDiv = document.querySelector(".cart-div");
+      const loginRegisterDiv = document.querySelector(".login-register-div");
+      const isLogged = !!localStorage.getItem("user"); // true თუ დალოგინებულია
+      let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+      function updateCartVisibility() {
+        // თუ დალოგინებული არაა, მაშინ კალათა არ გამოჩნდეს
+        if (isLogged) {
+          cartDiv.style.display = "block"; // ან flex შენს CSS-ზე დაყრდნობით
+        } else {
+          cartDiv.style.display = "none";
+        }
+      }
+
+      function updateLoginRegisterVisibility() {
+        if (isLogged) {
+          loginRegisterDiv.style.display = "none";
+        } else {
+          loginRegisterDiv.style.display = "flex"; // ან block
+        }
+      }
+
+      updateCartVisibility();
+      updateLoginRegisterVisibility();
+    });
+  </script>
+  <script type="module" src="/JS/headers.js"></script>
 </html>
-<script type="module"  src="/JS/index.js"></script>

@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <header>
+      <!-- <header>
         <div class="img-container">
           <img class="logo" src="assets/images/logo.png" alt="logo" />
         </div>
@@ -20,7 +20,11 @@
             <li>Contact us</li>
           </ul>
         </nav>
-
+        <div class="cart-div">
+          <a href="cart.html"
+            ><img src="assets/images/cart.png" alt="cart"
+          /></a>
+        </div>
         <div class="login-register-div">
           <a href="register.html">Register</a>
           <a href="signin.html">Sign In</a>
@@ -33,7 +37,7 @@
             <span></span>
           </button>
         </div>
-      </header>
+      </header> -->
 
       <div class="mobile-menu">
         <ul>
@@ -150,6 +154,20 @@
         </div>
       </footer>
     </div>
-    <script type="module" src="JS/menu.js"></script>
+    <script type="module" src="/JS/headers.js"></script>
+    <script type="module" src="JS/menu.js">
+            document.addEventListener("DOMContentLoaded", function () {
+        const cartDiv = document.querySelector(".cart-div");
+        const isLogged = !!localStorage.getItem("user");
+
+        if (cartDiv) {
+          if (isLogged) {
+            cartDiv.style.display = "block"; // ან flex, რაც შენი CSS–ისთვის საჭიროა
+          } else {
+            cartDiv.style.display = "none";
+          }
+        }
+      });
+    </script>
   </body>
 </html>

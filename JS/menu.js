@@ -181,3 +181,73 @@ modal.addEventListener("click", (e) => {
 
 // Initialize
 document.addEventListener("DOMContentLoaded", fetchProducts);
+document.addEventListener("DOMContentLoaded", function () {
+  const cartDiv = document.querySelector(".cart-div");
+  const loginRegisterDiv = document.querySelector(".login-register-div");
+  const isLogged = !!localStorage.getItem("user");
+  const cartCounter = document.createElement("span");
+  cartCounter.className = "cart-counter";
+
+  // კალათის აიქონი და login/register ღილაკების კონტროლი
+  if (cartDiv) {
+    if (isLogged) {
+      cartDiv.style.display = "block";
+      cartDiv.appendChild(cartCounter);
+    } else {
+      cartDiv.style.display = "none";
+    }
+  }
+
+  if (loginRegisterDiv) {
+    if (isLogged) {
+      loginRegisterDiv.style.display = "none";
+    } else {
+      loginRegisterDiv.style.display = "flex";
+    }
+  }
+
+  // კალათის მონაცემები LocalStorage-დან
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  updateCartCounter();
+
+  // ფუნქცია კალათის counter-ის განახლებაზე
+  function updateCartCounter() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCounter.textContent = totalItems;
+    // კალათის აიქონი გამოჩნდეს პირველ დამატებაზე, თუ მომხმარებელი არ არის დალოგინებული
+    if (!isLogged && totalItems > 0) {
+      cartDiv.style.display = "block";
+    }
+  }
+
+  // პროდუქტების კოდის ბოლოს ან modal-ში დაემატება ღილაკი "Add to cart"
+  // მაგალითად, აქ არის Modal-ში:
+  const addToCartBtn = document.createElement("button");
+  addToCartBtn.textContent = "Add to Cart";
+  addToCartBtn.className = "add-to-cart-btn";
+  modal.querySelector(".modal-info").appendChild(addToCartBtn);
+
+  addToCartBtn.addEventListener("click", () => {
+    const activeSize = modalSizesDiv.querySelector("button.active");
+    const extras = Array.from(
+      modalExtrasDiv.querySelectorAll("button.active")
+    ).map((b) => ({
+      name: b.textContent.trim(),
+      price: parseFloat(b.dataset.price),
+    }));
+
+    const productToAdd = {
+      id: modal.dataset.productId || Math.random(),
+      name: modalName.textContent,
+      size: activeSize ? activeSize.textContent.trim() : "",
+      extras,
+      price: parseFloat(modalPrice.textContent.replace("$", "")),
+      quantity: 1,
+    };
+
+    cart.push(productToAdd);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCounter();
+    alert("Product added to cart!");
+  });
+});
