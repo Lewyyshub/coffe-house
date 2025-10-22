@@ -11,7 +11,7 @@
   display: flex;
   width: 100%;
   padding: 50px;
-  height: 70vh;
+  height: 100vh;
 }
 main {
   width: 100%;
@@ -109,14 +109,20 @@ main {
   line-height: 125%;
   font-weight: 600;
 }
-.login-register {
+#user-info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-buttons {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   max-width: 500px;
 }
-.login-register > div {
+.auth-buttons > button {
   width: 200px;
   height: 44px;
   border-radius: 100px;
@@ -126,7 +132,7 @@ main {
   display: flex;
   cursor: pointer;
 }
-.login-register > div > a {
+.auth-buttons > button {
   color: #403f3d;
   text-decoration: none;
   font-weight: 600;
@@ -138,4 +144,24 @@ main {
   flex-direction: column;
   width: 100%;
   gap: 12px;
+}
+.confirm-btn {
+  color: #403f3d;
+  font-weight: 600;
+  line-height: 150%;
+  font-size: 16px;
+  background: none;
+  border: none;
+}
+#cart-actions {
+  width: 200px;
+  height: 44px;
+  border-radius: 100px;
+  border: 1px solid #665f55;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main {
+  height: 100vh;
 }
