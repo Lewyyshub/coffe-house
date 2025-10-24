@@ -230,6 +230,13 @@ header {
   display: flex;
   flex-direction: column;
 }
+.product-card img {
+  width: 100%; /* სურათი მთელ ბლოკს მოიცავს */
+  height: 200px; /* ფიქსირებული სიმაღლე */
+  object-fit: cover; /* პროპორციულად მოჭრის, რომ ფორმა არ დამახინჯდეს */
+  border-radius: 10px; /* სურვილისამებრ — მრგვალი კუთხეები */
+  display: block; /* გარე მანძილები უკეთესად მუშაობს */
+}
 .filter {
   display: flex;
   justify-content: center;
@@ -585,7 +592,7 @@ header {
 }
 
 .close-btn:hover {
-  background: #665F55;
+  background: #665f55;
   color: #e1d4c9;
 }
 
@@ -624,5 +631,136 @@ header {
 
   .modal-box {
     max-width: 95%;
+  }
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.content {
+  width: 100%;
+  max-width: none; /* აღარ ზღუდავს სიგანეს */
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 0 60px; /* მცირე ზღვარი მარცხნივ და მარჯვნივ, რომ კიდეს არ მიეკროს */
+}
+
+/* --- HEADER --- */
+.header-div h1 {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.header-div span {
+  color: #b09067;
+}
+
+/* --- FILTER SECTION --- */
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.filter div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  /* background-color: #e1d4c9; */
+  border: 1px solid #c1b6ad;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #403f3d;
+  font-weight: 600;
+  line-height: 150%;
+  font-size: 16px;
+}
+
+.filter div.active,
+.filter div:hover {
+  background-color: #665f55;
+  color: #e1d4c9;
+}
+
+.filter img {
+  width: 30px;
+  height: 30px;
+}
+
+/* --- PRODUCTS GRID --- */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 ბარათი ერთ რიგში */
+  gap: 25px;
+  width: 100%;
+}
+
+/* --- PRODUCT CARD --- */
+.product-card {
+  border-radius: 20px;
+  border: 1px solid #c1b6ad;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+  width: 100%; /* მთელ ბარათს მოიცავს */
+  height: 310px; /* ფიქსირებული სიმაღლე */
+  object-fit: fill; /* ზედმეტს მოჭრის და პროპორციას შეინარჩუნებს */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: block;
+}
+.product-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 15px 20px 5px;
+}
+
+.product-card p {
+  margin: 0 20px 10px;
+  font-size: 15px;
+  color: #6b6b6b;
+}
+
+.product-card .price {
+  color: #403f3d;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 20px 20px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1400px) {
+  .products-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .products-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .products-container {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

@@ -163,5 +163,65 @@ main {
   align-items: center;
 }
 main {
-  height: 100vh;
+  height: 90vh;
+}
+#user-info {
+  /* background-color: #e1d4c9; */
+  border-radius: 16px;
+  padding: 20px 25px;
+  color: #403f3d;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+}
+
+#user-info p {
+  margin: 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between; /* მარცხნივ ტექსტი, მარჯვნივ მნიშვნელობა */
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
+  /* padding-bottom: 6px; */
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 150%;
+}
+
+#user-info strong {
+  font-weight: 600;
+  color: #403f3d;
+}
+
+#user-info p:last-child {
+  border-bottom: none; /* ბოლო ხაზზე ქვედა საზღვარი არ უნდა ჩანდეს */
+}
+
+/* დამატებით: hover ეფექტი (სურვილისამებრ) */
+/* #user-info:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease;
+} */
+.info-row {
+  display: flex;
+  justify-content: space-between; /* მარცხნივ და მარჯვნივ ტექსტი */
+  align-items: center;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
+  padding-bottom: 8px;
+  width: 100%;
+}
+.info-row p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.info-row strong {
+  font-weight: 600;
+  color: #403f3d;
+}
+
+.info-row:last-child {
+  border-bottom: none;
 }

@@ -40,7 +40,7 @@
     cartList.innerHTML = "";
 
     if (cart.length === 0) {
-      cartList.innerHTML = "<p>Your cart is empty</p>";
+      // cartList.innerHTML = "<p>Your cart is empty</p>";
       if (totalPriceEl) totalPriceEl.textContent = "$0.00";
       return;
     }
@@ -97,7 +97,6 @@
         <button id="go-register">Register</button>
       </div>
     `;
-      // დალოგაუთის დროს actionsDiv არ ჩანს
       if (actionsDiv) actionsDiv.style.display = "none";
 
       document
@@ -115,15 +114,24 @@
       return;
     }
 
-    // Logged-in user info
+    // --- Logged-in user info ---
     userInfoDiv.innerHTML = `
-    <p><strong>City:</strong> ${user.city}</p>
-    <p><strong>Street:</strong> ${user.street}</p>
-    <p><strong>House Number:</strong> ${user.houseNumber}</p>
-    <p><strong>Payment Method:</strong> ${user.paymentMethod}</p>
-  `;
+  <div class="info-row">
+    <p><strong>Address:</strong></p>
+    <p>${user.city}, ${user.street}, ${user.houseNumber}</p>
+  </div>
+  <div class="info-row">
+    <p><strong>Pay by:</strong></p>
+    <p>${user.paymentMethod}</p>
+  </div>
+`;
+    // თუ კალათა ცარიელია → actionsDiv საერთოდ არ გამოჩნდეს
+    if (cart.length === 0) {
+      if (actionsDiv) actionsDiv.style.display = "none";
+      return;
+    }
 
-    // დალოგინებულზე actionsDiv გამოჩნდება
+    // თუ კალათაში პროდუქტებია → actionsDiv გამოჩნდეს Confirm ღილაკით
     if (actionsDiv) actionsDiv.style.display = "block";
     renderConfirmButton();
   }

@@ -20,7 +20,10 @@ function showSlide(index) {
 function createSlide(item) {
   const name = item.name || "No name";
   const description = item.description || "";
-  const image = item.image || `/assets/images/${item.id}.png`; // დარწმუნდი, რომ path არსებობს
+  const image =
+    item.image ||
+    `/assets/coffe-images/${item.id}.jpg
+  `; // დარწმუნდი, რომ path არსებობს
   const price = item.price != null ? Number(item.price).toFixed(2) : "N/A";
 
   const slide = document.createElement("div");

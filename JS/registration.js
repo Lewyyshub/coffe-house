@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       city: city.value,
       street: street.value,
       houseNumber: Number(house.value),
-      paymentMethod: paymentCash.checked ? "cash" : "card",
+      paymentMethod: paymentCash.checked ? "Cash" : "Card",
     };
 
     // სწორად შენახვა localStorage-ში

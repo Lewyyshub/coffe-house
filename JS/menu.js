@@ -21,12 +21,25 @@ productsContainer.appendChild(loader);
 function createProductCard(product) {
   const card = document.createElement("div");
   card.className = "product-card";
+
+  // კატეგორია ყოველთვის პატარა ასოებით
+  const category = (product.category || "coffee").toLowerCase().trim();
+
+  // შესაბამისი ფოლდერი
+  let folderName = "coffe-images"; // default
+  if (category === "tea") folderName = "tea-images";
+  else if (category === "dessert") folderName = "dessert-images";
+
+  // ფოტო ID-ის მიხედვით (.jpg)
+  const imagePath = `/assets/${folderName}/${product.id}.jpg`;
+
   card.innerHTML = `
+    <img src="${imagePath}" alt="${product.name}" />
     <h3>${product.name}</h3>
     <p>${product.description}</p>
     <p class="price">$${Number(product.price).toFixed(2)}</p>
   `;
-  // Modal open
+
   card.addEventListener("click", () => openModal(product));
   return card;
 }
@@ -82,7 +95,6 @@ async function fetchProducts() {
 async function openModal(product) {
   console.log("Clicked product:", product.name);
 
-  // პირველ რიგში წამოიღე დეტალური ინფორმაცია
   try {
     const res = await fetch(
       `http://coffee-shop-be.eu-central-1.elasticbeanstalk.com/products/${product.id}`
@@ -91,6 +103,24 @@ async function openModal(product) {
     const data = await res.json();
     const fullProduct = data.data;
     console.log("Full product:", fullProduct);
+
+    // კატეგორია პატარა ასოებით
+    const category = (fullProduct.category || "coffee").toLowerCase().trim();
+
+    // შესაბამისი ფოლდერი
+    let folderName = "coffe-images";
+    if (category === "tea") folderName = "tea-images";
+    else if (category === "dessert") folderName = "dessert-images";
+
+    // სურათი ID-ის მიხედვით (.jpg)
+    const imagePath = `/assets/${folderName}/${fullProduct.id}.jpg`;
+
+    // დაამატე სურათი მოდალში
+    const modalImage = modal.querySelector("#modal-img");
+    if (modalImage) {
+      modalImage.src = imagePath;
+      modalImage.alt = fullProduct.name;
+    }
 
     // დაამატე სახელები და აღწერა
     modalName.textContent = fullProduct.name;
@@ -160,10 +190,7 @@ async function openModal(product) {
       }
     };
 
-    // საწყისი ფასი
     updatePrice();
-
-    // მოდალის გახსნა
     modal.classList.add("open");
   } catch (err) {
     console.error("Error opening modal:", err);
@@ -222,11 +249,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // პროდუქტების კოდის ბოლოს ან modal-ში დაემატება ღილაკი "Add to cart"
   // მაგალითად, აქ არის Modal-ში:
+  // მოდალის ბოლოს დაამატე ღილაკი Add to Cart
   const addToCartBtn = document.createElement("button");
   addToCartBtn.textContent = "Add to Cart";
   addToCartBtn.className = "add-to-cart-btn";
-  modal.querySelector(".modal-info").appendChild(addToCartBtn);
 
+  // დაამატე ღილაკი .modal-info-ში Close ღილაკის ზემოთ
+  const closeBtn = modal.querySelector(".close-btn");
+  modal.querySelector(".modal-info").insertBefore(addToCartBtn, closeBtn);
+
+  // დაამატე ფუნქციონალი
   addToCartBtn.addEventListener("click", () => {
     const activeSize = modalSizesDiv.querySelector("button.active");
     const extras = Array.from(
@@ -236,6 +268,9 @@ document.addEventListener("DOMContentLoaded", function () {
       price: parseFloat(b.dataset.price),
     }));
 
+    const modalImage = document.querySelector("#modal-img");
+    const imageSrc = modalImage ? modalImage.src : "assets/images/rame.png";
+
     const productToAdd = {
       id: modal.dataset.productId || Math.random(),
       name: modalName.textContent,
@@ -243,6 +278,7 @@ document.addEventListener("DOMContentLoaded", function () {
       extras,
       price: parseFloat(modalPrice.textContent.replace("$", "")),
       quantity: 1,
+      image: imageSrc, // 📸 ფოტო გადავა კალათაში
     };
 
     cart.push(productToAdd);
